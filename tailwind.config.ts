@@ -63,6 +63,18 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			maxWidth: {
+				'mc': 'var(--mc-maxw)'
+			},
+			backgroundImage: {
+				'mc-gradient': 'var(--mc-gradient)'
+			},
+			boxShadow: {
+				'mc-subtle': 'var(--mc-shadow-subtle)'
+			},
+			transitionTimingFunction: {
+				'mc': 'var(--mc-transition)'
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
