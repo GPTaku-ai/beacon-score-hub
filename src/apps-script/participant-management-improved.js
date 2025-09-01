@@ -5,11 +5,11 @@
 
 // ===== 설정 =====
 const SHEET_ID = '1JQKQZXxHtueC3yBCNBEmlmRWTlmDZpQHnuV5ZjOwSik';
-const SHEET_NAME = 'Form Responses 1';
+const SHEET_NAME = 'Form Responses 1';  // 영문 시트명
 const EMAIL_COL_NAME = 'Email Address';
 const APPROVE_COL_NAME = '승인';
 
-// 추가 컬럼 정의 (분석에 유용)
+// 추가 컬럼 정의 (실제 양식 컬럼명과 일치)
 const COLUMNS = {
   TIMESTAMP: 'Timestamp',
   EMAIL: 'Email Address',
@@ -21,7 +21,12 @@ const COLUMNS = {
   SERVICE_TYPE: '서비스 유형',
   DEPOSITOR: '입금자명(실명 또는 대리 입금자명)',
   DEPOSIT_URL: '입금 확인증 URL',
-  APPROVAL: '승인'
+  NEW_SERVICE_CHECK: '신규 서비스 기준 확인',
+  OPERATION_POLICY: '운영정책 동의',
+  REFUND_POLICY: '환불/정산 동의',
+  FRAUD_PREVENTION: '부정 입력 방지 동의',
+  PRIVACY_POLICY: '개인정보 수집·이용 동의',
+  APPROVAL: '승인'  // P열 (16번째 열)
 };
 
 // 캐시 설정 (성능 개선)
@@ -469,4 +474,27 @@ function checkStatus() {
   } catch (error) {
     console.error('checkStatus Error:', error);
   }
+}
+
+/**
+ * 테스트용 함수 - Apps Script 에디터에서 직접 실행
+ */
+function testDoGet() {
+  // 가상의 이벤트 객체 생성
+  const e = {
+    parameter: {
+      type: 'count'
+    }
+  };
+  
+  const result = doGet(e);
+  const content = JSON.parse(result.getContent());
+  
+  console.log('=== API 테스트 결과 ===');
+  console.log('응답:', content);
+  console.log('승인된 참가자:', content.approved_count || content.count);
+  console.log('총 제출:', content.total_submissions);
+  console.log('고유 이메일:', content.unique_emails);
+  
+  return content;
 }

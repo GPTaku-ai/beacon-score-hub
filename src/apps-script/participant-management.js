@@ -5,7 +5,7 @@
 
 // ===== 설정 =====
 const SHEET_ID = '1JQKQZXxHtueC3yBCNBEmlmRWTlmDZpQHnuV5ZjOwSik';        // Google Sheet ID
-const SHEET_NAME = 'Form Responses 1';        // 폼 응답 시트명
+const SHEET_NAME = 'Form Responses 1';        // 폼 응답 시트명 (영문)
 const EMAIL_COL_NAME = 'Email Address';       // 이메일 컬럼명
 const APPROVE_COL_NAME = '승인';               // 승인 컬럼명 (P열에 추가)
 

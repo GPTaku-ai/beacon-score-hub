@@ -4,7 +4,7 @@ export const CONFIG = {
   SHEET_URL: "https://docs.google.com/spreadsheets/d/1JQKQZXxHtueC3yBCNBEmlmRWTlmDZpQHnuV5ZjOwSik/edit#gid=0",
   OPEN_CHAT_URL: "https://open.kakao.com/o/gLI237Oh",
   SCOREBOARD_URL: "https://docs.google.com/spreadsheets/d/placeholder_scoreboard/edit#gid=0",
-  COUNT_API_URL: "https://script.google.com/macros/s/placeholder/exec",
+  COUNT_API_URL: "https://script.google.com/macros/s/AKfycbxRNO7Ocf3q_opGslVLgYU6Ca_e6kq8wDCygZfQH2Dej7A-IxPBVZ4QlHk6reZ4LZxy/exec",
   // SHA-256 hash of 'q1q2q3q4!'
   ADMIN_HASH: "847d26c1deadfff2204122942fea768ea5c1f78266b202c2dc7a0665ca6770e9",
   SESSION_HOURS: 12,
