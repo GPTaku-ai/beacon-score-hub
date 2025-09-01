@@ -1,7 +1,7 @@
 export const CONFIG = {
   APP_TITLE: "MAU 챌린지",
-  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform",
-  SHEET_URL: "https://docs.google.com/spreadsheets/d/placeholder/edit#gid=0",
+  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLScQLqkYliFjNEntFdABw4jKueuVM1DsJbjSHWt0aiHgtQNjsA/viewform",
+  SHEET_URL: "https://docs.google.com/spreadsheets/d/1JQKQZXxHtueC3yBCNBEmlmRWTlmDZpQHnuV5ZjOwSik/edit#gid=0",
   OPEN_CHAT_URL: "https://open.kakao.com/o/gLI237Oh",
   SCOREBOARD_URL: "https://docs.google.com/spreadsheets/d/placeholder_scoreboard/edit#gid=0",
   COUNT_API_URL: "https://script.google.com/macros/s/placeholder/exec",

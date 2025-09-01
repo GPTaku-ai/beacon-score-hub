@@ -4,10 +4,10 @@
  */
 
 // ===== 설정 =====
-const SHEET_ID = 'YOUR_SHEET_ID_HERE';        // Google Sheet ID로 교체
+const SHEET_ID = '1JQKQZXxHtueC3yBCNBEmlmRWTlmDZpQHnuV5ZjOwSik';        // Google Sheet ID
 const SHEET_NAME = 'Form Responses 1';        // 폼 응답 시트명
-const EMAIL_COL_NAME = '이메일 주소';          // 이메일 컬럼명 (폼 설정에 따라 조정)
-const APPROVE_COL_NAME = '승인';               // 승인 컬럼명 (수동으로 추가해야 함)
+const EMAIL_COL_NAME = 'Email Address';       // 이메일 컬럼명
+const APPROVE_COL_NAME = '승인';               // 승인 컬럼명 (P열에 추가)
 
 /**
  * 메인 GET 요청 핸들러
