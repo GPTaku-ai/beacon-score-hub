@@ -24,12 +24,26 @@ export const CountBadge = ({ className, showConfirmed = false, showApproved = fa
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const response = await fetch(CONFIG.COUNT_API_URL, { cache: 'no-store' });
+        const response = await fetch(CONFIG.COUNT_API_URL, { 
+          cache: 'no-store',
+          mode: 'cors'
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         setCountData(data);
       } catch (error) {
         console.warn("Count fetch failed:", error);
-        setCountData(null);
+        // CORS 오류 시 기본값 설정
+        setCountData({
+          total_submissions: 0,
+          unique_emails: 0,
+          approved_count: 0,
+          count: 0
+        });
       } finally {
         setLoading(false);
       }
