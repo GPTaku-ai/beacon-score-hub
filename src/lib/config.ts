@@ -7,7 +7,10 @@ export const CONFIG = {
   COUNT_API_URL: "https://script.google.com/macros/s/placeholder/exec",
   // SHA-256 hash of 'q1q2q3q4!'
   ADMIN_HASH: "847d26c1deadfff2204122942fea768ea5c1f78266b202c2dc7a0665ca6770e9",
-  SESSION_HOURS: 12
+  SESSION_HOURS: 12,
+  // Apps Script API 엔드포인트들
+  STATS_API_URL: "https://script.google.com/macros/s/placeholder/exec?type=stats",
+  LIST_API_URL: "https://script.google.com/macros/s/placeholder/exec?type=list"
 };
 
 export const TIMELINE = [

@@ -44,7 +44,7 @@ export const HeroSection = () => {
           </div>
 
           <div className="flex justify-center pt-4">
-            <CountBadge />
+            <CountBadge showApproved />
           </div>
         </div>
       </div>

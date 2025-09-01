@@ -103,9 +103,9 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CountBadge showConfirmed />
+              <CountBadge showConfirmed showApproved />
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                 <div>
                   <span className="text-muted-foreground">총 응답 수:</span>
                   <span className="ml-2 font-medium">
@@ -116,6 +116,12 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
                   <span className="text-muted-foreground">고유 이메일:</span>
                   <span className="ml-2 font-medium">
                     {countData?.unique_emails ?? "-"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">승인된 참가자:</span>
+                  <span className="ml-2 font-medium text-primary">
+                    {countData?.approved_count ?? "-"}
                   </span>
                 </div>
                 <div>
