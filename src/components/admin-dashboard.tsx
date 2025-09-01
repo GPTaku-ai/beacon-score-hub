@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CountBadge } from "@/components/count-badge";
-import { ExternalLink, Copy, LogOut, RefreshCw } from "lucide-react";
+import { ExternalLink, Copy, LogOut, RefreshCw, Edit, Save, X } from "lucide-react";
 import { CONFIG } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -21,12 +22,25 @@ const ADMIN_LINKS = [
 export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
   const [countData, setCountData] = useState<any>(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [editingUrl, setEditingUrl] = useState<string | null>(null);
+  const [urls, setUrls] = useState<Record<string, string>>({});
+  const [tempUrl, setTempUrl] = useState("");
   const { toast } = useToast();
+
+  const loadUrls = () => {
+    const savedUrls: Record<string, string> = {};
+    ADMIN_LINKS.forEach(link => {
+      const savedUrl = localStorage.getItem(`admin_url_${link.key}`);
+      savedUrls[link.key] = savedUrl || CONFIG[link.key as keyof typeof CONFIG] as string;
+    });
+    setUrls(savedUrls);
+  };
 
   const refreshCounts = async () => {
     setRefreshing(true);
     try {
-      const response = await fetch(CONFIG.COUNT_API_URL, { cache: 'no-store' });
+      const countApiUrl = urls.COUNT_API_URL || CONFIG.COUNT_API_URL;
+      const response = await fetch(countApiUrl, { cache: 'no-store' });
       const data = await response.json();
       setCountData(data);
     } catch (error) {
@@ -38,19 +52,25 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
   };
 
   useEffect(() => {
-    refreshCounts();
+    loadUrls();
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(urls).length > 0) {
+      refreshCounts();
+    }
+  }, [urls]);
+
   const openLink = (key: string) => {
-    const url = CONFIG[key as keyof typeof CONFIG];
-    if (typeof url === 'string') {
+    const url = urls[key];
+    if (url) {
       window.open(url, '_blank', 'noopener');
     }
   };
 
   const copyLink = async (key: string) => {
-    const url = CONFIG[key as keyof typeof CONFIG];
-    if (typeof url === 'string') {
+    const url = urls[key];
+    if (url) {
       try {
         await navigator.clipboard.writeText(url);
         toast({
@@ -65,6 +85,56 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
         });
       }
     }
+  };
+
+  const startEditUrl = (key: string) => {
+    setEditingUrl(key);
+    setTempUrl(urls[key] || "");
+  };
+
+  const saveUrl = (key: string) => {
+    if (!tempUrl.trim()) {
+      toast({
+        title: "입력 오류",
+        description: "URL을 입력해주세요.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      new URL(tempUrl);
+    } catch (error) {
+      toast({
+        title: "URL 형식 오류",
+        description: "올바른 URL 형식을 입력해주세요.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    localStorage.setItem(`admin_url_${key}`, tempUrl);
+    setUrls(prev => ({ ...prev, [key]: tempUrl }));
+    setEditingUrl(null);
+    toast({
+      title: "URL 저장됨",
+      description: "URL이 성공적으로 저장되었습니다.",
+    });
+  };
+
+  const cancelEdit = () => {
+    setEditingUrl(null);
+    setTempUrl("");
+  };
+
+  const resetUrl = (key: string) => {
+    localStorage.removeItem(`admin_url_${key}`);
+    const defaultUrl = CONFIG[key as keyof typeof CONFIG] as string;
+    setUrls(prev => ({ ...prev, [key]: defaultUrl }));
+    toast({
+      title: "URL 초기화됨",
+      description: "기본 URL로 복원되었습니다.",
+    });
   };
 
   const formatDate = (isoString?: string) => {
@@ -144,24 +214,74 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
                 <p className="text-sm text-muted-foreground">{link.description}</p>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-2 mb-3">
-                  <Button 
-                    onClick={() => openLink(link.key)}
-                    className="flex-1"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    새 탭 열기
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    onClick={() => copyLink(link.key)}
-                  >
-                    <Copy className="w-4 h-4" />
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground break-all">
-                  {CONFIG[link.key as keyof typeof CONFIG]}
-                </p>
+                {editingUrl === link.key ? (
+                  <div className="space-y-3">
+                    <Input
+                      value={tempUrl}
+                      onChange={(e) => setTempUrl(e.target.value)}
+                      placeholder="URL을 입력하세요"
+                      className="text-sm"
+                    />
+                    <div className="flex gap-2">
+                      <Button 
+                        onClick={() => saveUrl(link.key)}
+                        size="sm"
+                        className="flex-1"
+                      >
+                        <Save className="w-4 h-4 mr-2" />
+                        저장
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        onClick={cancelEdit}
+                        size="sm"
+                        className="flex-1"
+                      >
+                        <X className="w-4 h-4 mr-2" />
+                        취소
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        onClick={() => resetUrl(link.key)}
+                        size="sm"
+                        title="기본값 복원"
+                      >
+                        초기화
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex gap-2 mb-3">
+                      <Button 
+                        onClick={() => openLink(link.key)}
+                        className="flex-1"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        새 탭 열기
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => copyLink(link.key)}
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => startEditUrl(link.key)}
+                        title="URL 수정"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground break-all">
+                      {urls[link.key]}
+                      {urls[link.key] !== CONFIG[link.key as keyof typeof CONFIG] && (
+                        <span className="text-primary ml-1">(수정됨)</span>
+                      )}
+                    </p>
+                  </>
+                )}
               </CardContent>
             </Card>
           ))}
