@@ -173,7 +173,7 @@ export const AdminDashboard = ({ onLogout }: AdminDashboardProps) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <CountBadge showConfirmed showApproved />
+              <CountBadge showConfirmed showApproved data={countData ?? undefined} loadingOverride={refreshing} />
               
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
                 <div>
