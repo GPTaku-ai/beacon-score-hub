@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { CONFIG } from "@/lib/config";
 
 interface CountData {
-  total_submissions: number;
-  unique_emails: number;
+  count?: number;  // 메인 카운트 (승인된 수)
+  total_submissions?: number;
+  unique_emails?: number;
   confirmed_count?: number;
   approved_count?: number;
+  pending_count?: number;
   updated_at?: string;
 }
 
@@ -36,9 +38,12 @@ export const CountBadge = ({ className, showConfirmed = false, showApproved = fa
     fetchCount();
   }, []);
 
-  const applyCount = countData?.unique_emails ?? countData?.total_submissions ?? 0;
+  // 현재 참가 신청: 총 제출 수 (total_submissions)
+  const applyCount = countData?.total_submissions ?? 0;
+  // 승인된 참가자: approved_count 또는 count
+  const approvedCount = countData?.approved_count ?? countData?.count ?? 0;
+  // 입금 확정: confirmed_count (현재 미사용)
   const confirmCount = countData?.confirmed_count ?? 0;
-  const approvedCount = countData?.approved_count ?? 0;
 
   return (
     <div className={`flex gap-3 flex-wrap ${className}`}>

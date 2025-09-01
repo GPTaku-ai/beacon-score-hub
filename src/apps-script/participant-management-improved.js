@@ -366,9 +366,14 @@ function setCachedResponse(type, response) {
  * JSON 응답 생성 (CORS 헤더 포함)
  */
 function createResponse(data, status = 200) {
-  return ContentService
+  const output = ContentService
     .createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
+  
+  // CORS 헤더는 Apps Script 배포 설정에서 자동 처리됨
+  // 배포 시 "모든 사용자" 액세스 설정 필요
+  
+  return output;
 }
 
 // ===== 설치/관리 함수들 =====
