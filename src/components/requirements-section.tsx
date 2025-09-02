@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const RequirementsSection = () => {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-16 md:py-20" id="requirements-section">
       <div className="max-w-mc mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">

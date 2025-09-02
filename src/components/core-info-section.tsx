@@ -5,10 +5,14 @@ export const CoreInfoSection = () => {
   return (
     <section className="py-16 md:py-20">
       <div className="max-w-mc mx-auto px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" id="core-info">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            핵심 정보
+            챌린지 개요
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            아이디어만 있다면 4주 만에 실제 서비스 지표와 데이터 경험 가능<br />
+            신규 런칭 중심, 누구나 도전 가능
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
