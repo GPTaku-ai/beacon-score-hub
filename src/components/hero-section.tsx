@@ -16,7 +16,7 @@ export const HeroSection = () => {
       <div className="max-w-mc mx-auto px-6">
         <div className="text-center space-y-8">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight md:leading-tight lg:leading-tight text-foreground">
               4주 만에 배포부터 유저 유입,<br />
               그리고 실제 서비스 운영까지!
             </h1>
@@ -41,7 +41,7 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg" 
-              className="px-8 py-3 text-base font-bold bg-foreground text-background hover:bg-foreground/90"
+              className="w-48 py-3 text-base font-bold bg-foreground text-background hover:bg-foreground/90"
               onClick={handleSignUp}
             >
               챌린지 신청하기
@@ -49,7 +49,7 @@ export const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="px-8 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
+              className="w-48 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
               onClick={() => {
                 const coreInfo = document.getElementById('core-info');
                 coreInfo?.scrollIntoView({ behavior: 'smooth' });
@@ -60,7 +60,7 @@ export const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="px-8 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
+              className="w-48 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
               onClick={handleOpenChat}
             >
               오픈채팅 바로가기
