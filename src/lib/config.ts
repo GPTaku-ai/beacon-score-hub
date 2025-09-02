@@ -14,11 +14,31 @@ export const CONFIG = {
 };
 
 export const TIMELINE = [
-  { date: "9/1-9/10", title: "신청 기간", desc: "Google Form을 통한 참가 신청" },
-  { date: "9/11", title: "1주차 OT", desc: "핵심 기능 제출 안내" },
-  { date: "9/11-9/18", title: "1주차", desc: "핵심 기능 개발 및 제출" },
-  { date: "9/19-10/2", title: "2-3주차", desc: "MVP 개발 및 개선" },
-  { date: "10/3-10/31", title: "4주차", desc: "공개 배포 및 이수 심사" }
+  {
+    date: "9/1 ~ 9/10",
+    title: "신청 기간",
+    desc: "챌린지 참가 신청 접수"
+  },
+  {
+    date: "9/1 ~ 9/15",
+    title: "서비스 및 핵심기능 수정 기간",
+    desc: "서비스 아이디어 및 핵심 기능 최종 정리"
+  },
+  {
+    date: "9/1 ~ 10/15",
+    title: "MVP 개발 및 배포",
+    desc: "최소 기능 제품 개발 완료 후 공개 배포"
+  },
+  {
+    date: "10/15 ~ 10/31",
+    title: "서비스 운영",
+    desc: "실제 유저와 함께하는 서비스 운영 경험"
+  },
+  {
+    date: "10/31",
+    title: "챌린지 이수 본인평가 제출",
+    desc: "챌린지 완주 및 최종 성과 제출"
+  }
 ];
 
 export const CORE_CARDS = [

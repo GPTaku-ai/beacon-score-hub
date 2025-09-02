@@ -14,7 +14,7 @@ export const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-4">
             <Logo />
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              4주 만에 배포하고, 유저로 증명하자
+              4주 만에 실제 유저와 함께, 내 서비스 성장과 운영 경험까지.
             </p>
           </div>
           

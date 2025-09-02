@@ -1,11 +1,6 @@
 import { Button } from "@/components/ui/button";
 
 export const CTASection = () => {
-  const scrollToFAQ = () => {
-    const faqSection = document.getElementById('faq-section');
-    faqSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const scrollToRequirements = () => {
     const requirementsSection = document.getElementById('requirements-section');
     requirementsSection?.scrollIntoView({ behavior: 'smooth' });
@@ -19,7 +14,7 @@ export const CTASection = () => {
             더 궁금한 점이 있으신가요?
           </h2>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button 
               variant="outline"
               size="lg"
@@ -27,14 +22,6 @@ export const CTASection = () => {
               onClick={scrollToRequirements}
             >
               챌린지 상세
-            </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="px-8 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
-              onClick={scrollToFAQ}
-            >
-              FAQ 전체보기
             </Button>
           </div>
         </div>
