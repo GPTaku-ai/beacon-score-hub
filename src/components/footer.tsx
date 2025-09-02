@@ -21,7 +21,8 @@ export const Footer = () => {
           <div className="flex flex-col items-center md:items-end gap-4">
             <Button 
               variant="outline" 
-              size="sm"
+              size="lg"
+              className="px-8 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
               onClick={handleOpenChat}
             >
               오픈채팅 참여하기

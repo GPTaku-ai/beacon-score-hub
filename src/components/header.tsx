@@ -21,7 +21,7 @@ export const Header = () => {
             variant="ghost" 
             size="sm"
             onClick={handleOpenChat}
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex font-medium"
           >
             오픈채팅
           </Button>

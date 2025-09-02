@@ -60,10 +60,10 @@ export const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="px-6 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
+              className="px-8 py-3 text-base font-medium border-foreground text-foreground hover:bg-foreground hover:text-background"
               onClick={handleOpenChat}
             >
-              💬 오픈채팅 바로가기
+              오픈채팅 바로가기
             </Button>
           </div>
 

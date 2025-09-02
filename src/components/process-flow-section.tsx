@@ -45,7 +45,7 @@ export const ProcessFlowSection = () => {
                 <div className="w-16 h-16 mx-auto rounded-full border-2 border-foreground bg-background flex items-center justify-center text-2xl">
                   {step.icon}
                 </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-foreground text-background text-sm font-bold flex items-center justify-center">
+                <div className="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-foreground text-background text-sm font-bold flex items-center justify-center">
                   {step.number}
                 </div>
               </div>
